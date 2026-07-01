@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Pacarku Tercinta Tersayang ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #4a4a4a;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #ff758f;
+        }
+
+        /* Hati berjatuhan */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Konten Pertama (Pertanyaan awal) -->
+    <div id="card1" class="container">
+        <h1>Hai Sayang! 👋❤️</h1>
+        <p>Aku ada sesuatu buat kamu. Coba klik tombol di bawah ini deh...</p>
+        <button class="btn" onclick="nextPage()">Klik di Sini</button>
+    </div>
+
+    <!-- Konten Kedua (Surat Cintanya) -->
+    <div id="card2" class="container hidden">
+        <h1>For You, My Love ✨</h1>
+        <p id="typing-text"></p>
+        <button class="btn" onclick="hujaniCinta()">Kirim Cinta Boyaa! ❤️</button>
+    </div>
+
+    <script>
+        // Efek teks mengetik otomatis
+        const pesan = "Meskipun di sini gak ada foto kita berdua, tapi aku cuma mau bilang kalau aku bersyukur banget punya kamu. Makasih ya udah selalu ada, udah jadi orang yang paling sabar, dan selalu bikin aku bahagia. I love you so much! 🥰❤️";
+        let index = 0;
+
+        function nextPage() {
+            document.getElementById('card1').classList.add('hidden');
+            document.getElementById('card2').classList.remove('hidden');
+            typeWriter();
+            // Mulai efek hati jatuh pelan-pelan
+            setInterval(createHeart, 300);
+        }
+
+        function typeWriter() {
+            if (index < pesan.length) {
+                document.getElementById("typing-text").innerHTML += pesan.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50); // Kecepatan mengetik (ms)
+            }
+        }
+
+        // Fungsi membuat animasi hati jatuh
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Antara 2-5 detik
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Tombol interaktif ekstra untuk bikin hujan hati makin lebat
+        function hujaniCinta() {
+            for(let i=0; i<20; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
